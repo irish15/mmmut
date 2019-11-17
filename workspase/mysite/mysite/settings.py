@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'plant.apps.PlantConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -121,3 +122,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+# IMAGE_ROOT = os.path.join(BASE_DIR, 'images')
+# IMAGE_URL = '/images/'
+
+LOGIN_URL = 'plant:login'
+LOGIN_REDIRECT_URL = 'plant:top'

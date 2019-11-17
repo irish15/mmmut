@@ -1,0 +1,7 @@
+Dear {{ user.email }}
+
+Namaste ~
+Please click this url:
+{{ protocol}}://{{ domain }}{% url 'plant:user_create_complete' token %}
+
+Thanks,
