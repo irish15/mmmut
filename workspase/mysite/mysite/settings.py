@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'plant.apps.PlantConfig',
-    'polls.apps.PollsConfig',
+    # 'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,11 +77,24 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql', # 変更
+        'NAME': 'plant_analysis', # プロジェクトで使用するデータベース名
+        'USER': 'iris', # パソコンにインストールしたMySQLのユーザー名
+        'PASSWORD': 'e155756E', # 同上。そのパスワード
+        # 'HOST': 'localhost',
+        # 'HOST': '127.0.0.1',
+        # 'OPTIONS': {
+        #     'charset': 'utf8mb4',
+        #     'sql_mode': 'TRADITIONAL,NO_AUTO_VALUE_ON_ZERO,ONLY_FULL_GROUP_BY',                    
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
