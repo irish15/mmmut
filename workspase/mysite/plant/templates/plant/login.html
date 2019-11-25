@@ -1,8 +1,9 @@
 {% extends "plant/base.html" %}
 {% block content %}
-<div class="row">
+
+<!-- <div class="row"> -->
     <!-- 左側、ログインエリア -->
-    <div class="card col-md-6">
+    <!-- <div class="card col-md-6">
         <div class="card-body">
             <form action="{% url 'plant:login' %}" method="POST">
                 {{ form.non_field_errors }}
@@ -16,13 +17,32 @@
                 {% csrf_token %}
             </form>
         </div>
-    </div><!-- 左側、ログインエリアおわり -->
+    </div> -->
+    <!-- 左側、ログインエリアおわり -->
+    
+    <body>
+      {% if form.errors  %}
+      <p>ユーザーID, パスワードが一致しません．</p>
+      {% endif %}
+      <form method="POST" action="{% url 'plant:login' %}">
+        {% csrf_token %}
+        <label>ユーザーID</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+        <label>パスワード</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+        
+        <button type = "submit"> LOGIN </button>
+      </form>
+    </body>
 
     <!-- 右側、会員登録エリア -->
-    <div class="card col-md-6">
+    <!-- <div class="card col-md-6">
         <div class="card-body">
             <a href="{% url 'plant:user_create' %}" class="btn btn-success btn-lg btn-block" >SIGN UP</a>
-        </div>
-    </div><!-- 右側、会員登録エリアおわり -->
-</div>
+        </div> -->
+    <!-- </div> -->
+    <!-- 右側、会員登録エリアおわり -->
+<!-- </div> -->
 {% endblock %}

@@ -1,15 +1,35 @@
 {% extends "plant/base.html" %}
-{% block content %}
-<form action="" method="POST">
-    {{ form.non_field_errors }}
-    {% for field in form %}
-    <div class="form-group">
+
+<!DOCTYPE html>
+<html lang="ja">
+  <body>
+    {% block content %}    
+    <form method="POST" action="">
+      {% csrf_token %}
+      <label>ユーザーID</label>
+      {{ form.username }}
+      {{ form.username.errors }}
+      <label>パスワード</label>
+      {{ form.password1 }}
+      {{ form.password1.errors }}
+      <label>パスワード(確認)</label>
+      {{ form.password2 }}
+      {{ form.password2.errors }}
+      <button type = "submit">登録</button>
+    </form>
+    {% endblock %}    
+  </body>
+</html>
+
+<!-- <form action="" method="POST"> -->
+    <!-- {{ form.non_field_errors }}
+    {% for field in form %} -->
+    <!-- <div class="form-group">
         <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
         {{ field }}
         {{ field.errors }}
     </div>
     {% endfor %}
     {% csrf_token %}
-    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-</form>
-{% endblock %}
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button> -->
+<!-- </form> -->
