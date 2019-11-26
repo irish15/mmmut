@@ -1,48 +1,21 @@
-{% extends "plant/base.html" %}
-{% block content %}
+<p> Login page </p>
 
-<!-- <div class="row"> -->
-    <!-- 左側、ログインエリア -->
-    <!-- <div class="card col-md-6">
-        <div class="card-body">
-            <form action="{% url 'plant:login' %}" method="POST">
-                {{ form.non_field_errors }}
-                {% for field in form %}
-                    {{ field }}
-                    {{ field.errors }}
-                    <hr>
-                {% endfor %}
-                <button type="submit" class="btn btn-success btn-lg btn-block" >LOGIN</button>
-                <input type="hidden" name="next" value="{{ next }}" />
-                {% csrf_token %}
-            </form>
-        </div>
-    </div> -->
-    <!-- 左側、ログインエリアおわり -->
-    
-    <body>
-      {% if form.errors  %}
-      <p>ユーザーID, パスワードが一致しません．</p>
-      {% endif %}
-      <form method="POST" action="{% url 'plant:login' %}">
-        {% csrf_token %}
-        <label>ユーザーID</label>
-        {{ form.username }}
-        {{ form.username.errors }}
-        <label>パスワード</label>
-        {{ form.password }}
-        {{ form.password.errors }}
-        
-        <button type = "submit"> LOGIN </button>
-      </form>
-    </body>
-
-    <!-- 右側、会員登録エリア -->
-    <!-- <div class="card col-md-6">
-        <div class="card-body">
-            <a href="{% url 'plant:user_create' %}" class="btn btn-success btn-lg btn-block" >SIGN UP</a>
-        </div> -->
-    <!-- </div> -->
-    <!-- 右側、会員登録エリアおわり -->
-<!-- </div> -->
-{% endblock %}
+<body>
+  {% block content %}  
+  <div class="card col-md-6">
+      <div class="card-body">
+        {% if form.errors  %}
+        <p>User name or Password is not correct.</p>
+        {% endif %}
+          <form method="POST" action="{% url 'plant:login' %}">
+          {% csrf_token %}
+          <label>User name</label> <br>        
+          {{ form.username }}
+          {{ form.username.errors }} <br>
+          <label>Password</label> <br>
+          {{ form.password }}
+          {{ form.password.errors }} <br>
+    <button type = "submit">LOGIN</button>
+  </form>
+  {% endblock %}      
+</body>

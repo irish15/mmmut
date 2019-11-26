@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
   <body>
-    {% extends "plant/base.html" %}
     {% block content %}
-    <p> this is top page</p>
 
     {% if user.id  %}
-    <p>ログインしました．</p>
-    <p>こんにちは，{{ user.username }}さん</p>
-    <a href="{% url 'logout' %}">ログアウトする</a>
+    <p>You're Logging in</p>
+    <p>Namaste, {{ user.username }} :)</p>
+    <a href="{% url 'plant:logout' %}">LOGOUT</a>
+    <a href="{% url 'plant:upload' %}">Uploader</a>
     {% else %}
-    <p>ログインしようか</p>
-    <!-- <a href="{% url 'login' %}">ログイン</a>
-    <a href="{% url 'create_account' %}">アカウント作成</a> -->
+    <a href="{% url 'plant:login' %}">please LOGIN</a>
     {% endif %}
 
     {% endblock %}

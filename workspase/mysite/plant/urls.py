@@ -4,7 +4,7 @@ from . import views
 app_name = 'plant'
 
 urlpatterns = [
-    # path('', views.post_list, name='post_list'),
+    path('upload/', views.upload, name='upload'),
     path('signup/', views.Create_account.as_view(), name='user_create'),
     path('top/', views.Top.as_view(), name='top'),
     path('login/', views.Login.as_view(), name='login'),

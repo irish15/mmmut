@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <body>
-    {% block content %}    
+    <!-- {% block content %}     -->
     <form method="POST" action="">
       {% csrf_token %}
       <label>ユーザーID</label>
@@ -15,9 +15,9 @@
       <label>パスワード(確認)</label>
       {{ form.password2 }}
       {{ form.password2.errors }}
-      <button type = "submit">登録</button>
+      <button type = "submit">submit</button>
     </form>
-    {% endblock %}    
+    <!-- {% endblock %}     -->
   </body>
 </html>
 

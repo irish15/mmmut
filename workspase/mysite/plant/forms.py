@@ -14,6 +14,12 @@ class MyForm(forms.Form):
 
 class PhotoForm(forms.Form):
     image = forms.ImageField()
+    # text = forms.CharField(
+    #     label='Image Name ',
+    #     max_length=100,
+    #     required=True,
+    #     widget=forms.TextInput()
+    # )
 
 
 class LoginForm(AuthenticationForm):

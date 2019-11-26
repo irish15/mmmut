@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.conf import settings
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login, authenticate
 # from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import (LoginView, LogoutView)
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,18 +10,31 @@ from django.core.signing import BadSignature, SignatureExpired, loads, dumps
 from django.http import Http404, HttpResponseBadRequest
 from django.template.loader import render_to_string
 from django.views import generic
-from . import forms
+from . import forms, models
 
 User = get_user_model()    
-def post_list(request):
-    form_txt = forms.MyForm()
-    form_img = forms.PhotoForm()
-    # if request.method == 'GET':
-    return render(request, 'plant/post_list.html', {
-        'form_txt': form_txt, 
-        'form_img': form_img,
 
-    })
+def upload(request):
+    if request.method == 'GET':
+        return render(request, 'plant/upload.html', {
+            # 'form_txt': forms.MyForm(),
+            'form': forms.PhotoForm(),
+            'photos': models.Photo.objects.all(),
+        })
+    elif request.method == 'POST':                                                     
+        form = forms.PhotoForm(request.POST, request.FILES)
+        if not form.is_valid():
+            raise ValueError('invalid form')
+        photo = models.Photo()
+        photo.image = form.cleaned_data['image']
+        photo.save()
+        return redirect('/')
+    # form_img = forms.PhotoForm()
+    # return render(request, 'plant/upload.html', {
+    #     'form_txt': form_txt, 
+    #     'form_img': form_img,
+    # 
+    # })
 
 #アカウント作成
 class Create_account(generic.CreateView):
