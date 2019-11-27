@@ -1,3 +1,6 @@
+{% extends "plant/base.html" %}
+{% block content %}
+
 <form action="{% url 'plant:upload' %}" method="POST" enctype="multipart/form-data">      
     {% csrf_token %} 
     {{ form }}
@@ -11,4 +14,4 @@
     </div>
     {% endif %}
 {% endfor %}
-
+{% endblock %}

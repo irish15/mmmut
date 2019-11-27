@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
-    <title> login page </title>
+    <!-- <title> login page </title> -->
 </head>
 <body>
     <!-- ナビバー -->
@@ -23,12 +23,20 @@
         <ul class="navbar-nav mr-auto">
           {% if user.is_authenticated %}
           <li>
-            <a class="nav-item nav-link" href="{% url 'plant:logout' %}">LOGOUT</a>
+            <a class="nav-item nav-link" href="{% url 'plant:upload' %}">Uploader</a>
+          </li>
+          <li>
+            <a class="nav-item nav-link" href="{% url 'plant:logout' %}">LOGOUT</a>            
           </li>
           {% else %}
           <li class="nav-item">
             <a class="nav-item nav-link" href="{% url 'plant:login' %}">
-            Hi! LOGIN is here
+            Login
+          </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="{% url 'plant:user_create' %}">
+            SignUp
           </a>
           </li>
           {% endif %}
