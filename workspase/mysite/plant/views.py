@@ -28,13 +28,8 @@ def upload(request):
         photo = models.Photo()
         photo.image = form.cleaned_data['image']
         photo.save()
-        return redirect('/')
-    # form_img = forms.PhotoForm()
-    # return render(request, 'plant/upload.html', {
-    #     'form_txt': form_txt, 
-    #     'form_img': form_img,
-    # 
-    # })
+        return redirect('/plant/upload')
+
 
 #アカウント作成
 class Create_account(generic.CreateView):

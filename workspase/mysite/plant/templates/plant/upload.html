@@ -1,27 +1,14 @@
 <form action="{% url 'plant:upload' %}" method="POST" enctype="multipart/form-data">      
-    {% csrf_token %}
+    {% csrf_token %} 
     {{ form }}
     <input type="submit" value="submit" />
 </form>
 
-{% for photo in photos %}
+{% for p in photos %}
+  {% if p.image %}
     <div>
-        <img src="{{ photo.image.url }}" />                                           
+        <img src="{{ p.image.url }}" style="width:300px;height:auto" />
     </div>
+    {% endif %}
 {% endfor %}
 
-<!-- <html>
-    <head>
-        <title> input image </title>
-    </head>
-    <body>
-        <form>
-          {{ form_txt }}
-        </form>
-              
-        <form>
-            {{ form_img }}
-            <input type="submit" value="submit" />
-        </form>        
-    </body>
-</html> -->

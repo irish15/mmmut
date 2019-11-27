@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'plant'
 
@@ -12,12 +14,7 @@ urlpatterns = [
     # path('user_create/', views.UserCreate.as_view(), name='user_create'),
     # path('user_create/done', views.UserCreateDone.as_view(), name='user_create_done'),
     # path('user_create/complete/<token>/', views.UserCreateComplete.as_view(), name='user_create_complete'),
-    
 ]
-
-
-from django.conf import settings
-from django.conf.urls.static import static
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
