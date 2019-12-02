@@ -10,25 +10,66 @@ from django.core.signing import BadSignature, SignatureExpired, loads, dumps
 from django.http import Http404, HttpResponseBadRequest
 from django.template.loader import render_to_string
 from django.views import generic
-from . import forms, models
+from . import forms, models, silhouette
 
 User = get_user_model()    
 
 def upload(request):
-    if request.method == 'GET':
-        return render(request, 'plant/upload.html', {
-            # 'form_txt': forms.MyForm(),
-            'form': forms.PhotoForm(),
-            'photos': models.Photo.objects.all(),
-        })
-    elif request.method == 'POST':                                                     
-        form = forms.PhotoForm(request.POST, request.FILES)
-        if not form.is_valid():
-            raise ValueError('invalid form')
-        photo = models.Photo()
-        photo.image = form.cleaned_data['image']
-        photo.save()
-        return redirect('/plant/upload')
+    obj = models.Document.objects.all()
+    if request.method == 'POST':
+        form = forms.DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/plant/upload')
+    else:
+        form = forms.DocumentForm()
+        obj = models.Document.objects.all()
+
+    return render(request, 'plant/upload.html', {
+        'form': form,
+         'obj': obj
+    })
+
+    
+# def upload(request):
+#     obj = models.Photo.objects.get(id=num)
+# 
+#     if request.method == 'GET':
+#         input_path
+#         return render(request, 'plant/upload.html', {
+#             # 'form_txt': forms.MyForm(),
+#             'form': forms.PhotoForm(),
+#             'photos': models.Photo.objects.all(),
+#         })
+#     elif request.method == 'POST':                                                     
+#         form = forms.PhotoForm(request.POST, request.FILES)
+#         if not form.is_valid():
+#             raise ValueError('invalid form')            
+#         photo = models.Photo()        
+#         photo.save()
+# 
+#         if 'button_gray' in request.POST:
+#             gray(obj.photo.url)
+#             obj.gray = "gallery/gray.jpg"
+#             obj.save()
+#             return redirect('/plant/upload', num)
+#         # piyo = '1'
+#         # piyo = silhouette.main(piyo)
+#             # gray, hoge = silhouette.main(piyo)
+#         # return redirect('/plant/upload')
+#     params = {'data': obj}
+#     return render(request, 'plant/upload.html', params)
+
+def gray(url):
+
+    path = settings.BASE_DIR + url
+
+    print(path)
+    img = cv2.imread(path)
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    output = settings.BASE_DIR + "/media/gallery/gray.jpg"
+    cv2.imwrite(output, img_gray)
 
 
 #アカウント作成

@@ -1,17 +1,51 @@
 {% extends "plant/base.html" %}
 {% block content %}
 
-<form action="{% url 'plant:upload' %}" method="POST" enctype="multipart/form-data">      
-    {% csrf_token %} 
-    {{ form }}
-    <input type="submit" value="submit" />
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+</head>
+<body> 
+    <form action="{% url 'plant:upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+  {% for item in obj %}
+  <tr>
+      <td>{{ item.description }}</td>
+      <td>{{ item.document }}</td>
+      <td>{{ item.uploaded_at }}</td>
+  <tr>
+    {% if item.image %}
+      <div>
+          <img src="{{ item.image.url }}" style="width:300px;height:auto" />
+      </div>     
+    {% endif %}     
+  {% endfor %}    
+    <!-- <form action="{% url 'plant:upload' %}" method="POST" enctype="multipart/form-data">      
+        {% csrf_token %} 
+        {{ form }}
+        <input type="submit" value="submit" />
+    </form> -->
+    
+ 
+</body>
+</html>
 
+
+
+<!-- <img src="{{ data.gray.url }}" width="10%" height="10%"/>
+  <!-- <p> {{piyo}} </p> 
 {% for p in photos %}
-  {% if p.image %}
-    <div>
-        <img src="{{ p.image.url }}" style="width:300px;height:auto" />
-    </div>
+  {% if forloop.last %}
+    {% if p.image %}
+      <div>
+          <img src="{{ p.image.url }}" style="width:300px;height:auto" />
+      </div>      
+      {% endif %}
     {% endif %}
 {% endfor %}
-{% endblock %}
+{% endblock %} -->

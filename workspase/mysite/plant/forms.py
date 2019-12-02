@@ -1,8 +1,14 @@
 from django import forms
 from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm)
 from django.contrib.auth import get_user_model
+from .models import Document
 
 User = get_user_model()
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ('description', 'document', )
 
 class MyForm(forms.Form):
     text = forms.CharField(

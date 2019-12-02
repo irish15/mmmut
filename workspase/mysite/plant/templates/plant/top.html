@@ -7,8 +7,6 @@
     {% if user.id  %}
     <p>You're Logging in</p>
     <p>Namaste, {{ user.username }} :)</p>
-    <!-- <a href="{% url 'plant:logout' %}">LOGOUT</a>
-    <a href="{% url 'plant:upload' %}">Uploader</a> -->
     {% else %}
     <a href="{% url 'plant:login' %}">please LOGIN</a>
     {% endif %}

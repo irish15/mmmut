@@ -3,11 +3,16 @@ from django.db import models
 from django.utils import timezone
 
 
-class Photo(models.Model):
-    image = models.ImageField(upload_to='photos')
-    title = models.CharField(max_length=150)
-    # comment = models.TextField(blank=True)
-    # created_at = models.DateTimeField(auto_now=True)
+# class Photo(models.Model):
+class Document(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to='photos')
+    uploaded_at = models.DateTimeField(auto_now_add=True)    
+    image = models.ImageField(upload_to='photos/', default='SOME STRING')
+    gray = models.ImageField(default='Not Set')
+    # output = models.ImageField()
+    # title = models.CharField(max_length=150)
+
     def publish(self):
         self.published_date = timezone.now()
         self.save()
