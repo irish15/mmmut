@@ -8,10 +8,12 @@
 </form>
 
 {% for p in photos %}
-  {% if p.image %}
-    <div>
-        <img src="{{ p.image.url }}" style="width:300px;height:auto" />
-    </div>
+  {% if forloop.last %}
+    {% if p.image %}
+      <div>
+          <img src="{{ p.image.url }}" style="width:300px;height:auto" />
+      </div>
     {% endif %}
+  {% endif %}
 {% endfor %}
 {% endblock %}
